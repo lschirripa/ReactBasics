@@ -1,17 +1,33 @@
-function logRandom(){
-  console.log(Math.random())
+function Button() {
+  const [counter, setCounter] = useState(5);
+  
+  const handleClick= () => setCounter(counter*2);
+  
+	return (
+    <button onClick={handleClick}>
+      {counter}
+    </button>
+  )
 }
 
-function Button() {
-  const [counter, setCounter] = useState(0);
-  
-	return <button onClick={logRandom}>{counter}</button>
-  
-  //or return <button onClick={() => console.log(Math.random())}>{counter}</button>
+function Display(){
+  return(
+  <div>...</div>
+  )
+}
+
+function App(){
+  // or this [<Button />, <Display />],
+  //or if i dont want a parent div: <> and </> (empty tag) -> refers to <React.Fragment> and </React.Fragment>
+  return(
+    <div> 
+      <Button />
+      <Display />
+    </div>
+    );
 }
 
 ReactDOM.render(
-  <Button />, 
+  <App />,
   document.getElementById('mountNode'),
 );
-
