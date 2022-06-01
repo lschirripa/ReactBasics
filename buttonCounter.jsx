@@ -1,8 +1,10 @@
 function Button(props) {
+  
+  const handleClick = () => props.onClickFunction(props.increment)
 
-	return (
-    <button onClick={props.onClickFunction}>
-      +1 
+	return ( 
+    <button onClick={handleClick}>
+      +{props.increment}
     </button>
   );
 }
@@ -16,11 +18,14 @@ function Display(props){
 function App(){
   // or this [<Button />, <Display />],
   //or if i dont want a parent div: <> and </> (empty tag) -> refers to <React.Fragment> and </React.Fragment>
-  const [counter, setCounter] = useState(42);
-  const incrementCounter= () => setCounter(counter+1);
+  const [counter, setCounter] = useState(0);
+  const incrementCounter= (incrementValue) => setCounter(counter+incrementValue);
   return(
     <div> 
-      <Button onClickFunction= {incrementCounter}/>
+      <Button onClickFunction= {incrementCounter}  increment={1}/>
+      <Button onClickFunction= {incrementCounter}  increment={5}/>
+      <Button onClickFunction= {incrementCounter}  increment={10}/>
+      <Button onClickFunction= {incrementCounter}  increment={100}/>
       <Display message={counter}/>
     </div>
     );
